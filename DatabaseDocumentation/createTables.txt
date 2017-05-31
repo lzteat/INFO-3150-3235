@@ -1,0 +1,7 @@
+create table customer (cID int auto_increment not null primary key, cFName varchar(20), cLName varchar(20), cHash char(64), cSalt char(32), cEmail varchar(30));
+
+create table expense (eID int auto_increment not null primary key, cID int, foreign key (cID) references customer(cID) on delete cascade, eName varchar(20), ePrice decimal, eDate DATETIME);
+
+create table income (iID int auto_increment not null primary key, cID int, foreign key (cID) references customer(cID) on delete cascade, iName varchar(20), iPrice decimal, iDate DATETIME);
+
+create table category (caID int auto_increment not null primary key, eID int, foreign key (eID) references expense(eID) on delete cascade, caName varchar(20));

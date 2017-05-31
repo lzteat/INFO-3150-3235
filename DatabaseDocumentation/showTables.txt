@@ -1,0 +1,54 @@
+mysql> show tables;
++--------------------+
+| Tables_in_info3150 |
++--------------------+
+| category           |
+| customer           |
+| expense            |
+| income             |
++--------------------+
+
+
+mysql> desc category;
++--------+-------------+------+-----+---------+----------------+
+| Field  | Type        | Null | Key | Default | Extra          |
++--------+-------------+------+-----+---------+----------------+
+| caID   | int(11)     | NO   | PRI | NULL    | auto_increment |
+| eID    | int(11)     | YES  | MUL | NULL    |                |
+| caName | varchar(20) | YES  |     | NULL    |                |
++--------+-------------+------+-----+---------+----------------+
+
+
+mysql> desc customer;
++--------+-------------+------+-----+---------+----------------+
+| Field  | Type        | Null | Key | Default | Extra          |
++--------+-------------+------+-----+---------+----------------+
+| cID    | int(11)     | NO   | PRI | NULL    | auto_increment |
+| cFName | varchar(20) | YES  |     | NULL    |                |
+| cLName | varchar(20) | YES  |     | NULL    |                |
+| cHash  | char(64)    | YES  |     | NULL    |                |
+| cSalt  | char(32)    | YES  |     | NULL    |                |
+| cEmail | varchar(30) | YES  |     | NULL    |                |
++--------+-------------+------+-----+---------+----------------+
+
+mysql> desc expense;
++--------+---------------+------+-----+---------+----------------+
+| Field  | Type          | Null | Key | Default | Extra          |
++--------+---------------+------+-----+---------+----------------+
+| eID    | int(11)       | NO   | PRI | NULL    | auto_increment |
+| cID    | int(11)       | YES  | MUL | NULL    |                |
+| eName  | varchar(20)   | YES  |     | NULL    |                |
+| ePrice | decimal(10,0) | YES  |     | NULL    |                |
+| eDate  | datetime      | YES  |     | NULL    |                |
++--------+---------------+------+-----+---------+----------------+
+
+mysql> desc income;
++--------+---------------+------+-----+---------+----------------+
+| Field  | Type          | Null | Key | Default | Extra          |
++--------+---------------+------+-----+---------+----------------+
+| iID    | int(11)       | NO   | PRI | NULL    | auto_increment |
+| cID    | int(11)       | YES  | MUL | NULL    |                |
+| iName  | varchar(20)   | YES  |     | NULL    |                |
+| iPrice | decimal(10,0) | YES  |     | NULL    |                |
+| iDate  | datetime      | YES  |     | NULL    |                |
++--------+---------------+------+-----+---------+----------------+

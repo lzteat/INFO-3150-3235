@@ -1,0 +1,9 @@
+C:\Users\Thaniri>mysql -h tpc2017.cnd231jurlnn.us-west-2.rds.amazonaws.com -u admintpc -p
+Enter password: *********
+
+mysql> use info3150;
+
+Hostname: tpc2017.cnd231jurlnn.us-west-2.rds.amazonaws.com
+Username: admintpc
+Password: 3lmerfudd
+Database: info3150
