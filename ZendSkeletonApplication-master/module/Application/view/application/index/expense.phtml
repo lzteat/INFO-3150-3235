@@ -31,7 +31,7 @@ polyline{
                 <h3 class="panel-title">&nbsp;</h3>
             </div>
             <div class="panel-body">
-                <button class="randomize">randomize</button>
+                <p>This month's expenses:</p>
                 <div id="asd"></div>
                 <p>Filler Text</p>
             </div>
@@ -89,23 +89,24 @@ svg.attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
 var key = function(d){ return d.data.label; };
 
 var color = d3.scale.ordinal()
-	.domain(["Lorem ipsum", "dolor sit", "amet", "consectetur", "adipisicing", "elit", "sed", "do", "eiusmod", "tempor", "incididunt"])
-	.range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
+	.domain(["Rent: $1500", "Car: $200", "Tuition: $500", "Food: $300", "Internet: $90", "Phone: $60", "Utilities: $80", "Recreation: $1"])
+	.range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00", "#872a68", "#d5db0b", "#e86747"]);
+    //add expense names to the domain can also have $ values here
+    //range is just colours it doesnt matter
 
 function randomData (){
 	var labels = color.domain();
 	return labels.map(function(label){
-		return { label: label, value: Math.random() }
+		return { label: label, value: 10 }
+        //this line is the value of a given expense
+        //its a map of label=key number=value
+        //label can be like "Rent: $1000" and value can be 1000
 	});
 }
 
 change(randomData());
-
-d3.select(".randomize")
-	.on("click", function(){
-		change(randomData());
-	});
-
+//this function puts all the data into the donut chart
+//though animations aren't being used for our app, I'll leave them in since I don't feel like reading all that JS right now.
 
 function change(data) {
 
