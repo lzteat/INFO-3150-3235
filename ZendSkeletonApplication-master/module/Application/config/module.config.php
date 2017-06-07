@@ -34,6 +34,16 @@ return [
                     ],
                 ],
             ],
+            'expenses' => [
+                'type' => Literal::class,
+                'options' => [
+                    'route'    => '/expense',
+                    'defaults' => [
+                        'controller' => Controller\IndexController::class,
+                        'action'     => 'expense',
+                    ],
+                ],
+            ],
         ],
     ],
     'controllers' => [
