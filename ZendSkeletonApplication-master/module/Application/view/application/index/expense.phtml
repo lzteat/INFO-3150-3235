@@ -15,10 +15,18 @@
                 <h3 class="panel-title">Toolbar</h3>
             </div>
             <div class="panel-body">
-                <p>
-                    This page can handle creation, and viewing of expenses 
-					<?php echo $this->expenses; ?>   
-                </p>
+                <p>New Expense: </p>
+                    <form method="post" action="/expense">
+						<div class="form-group">
+							<label for="expenseName">Name</label>
+							<input type="textbox" class="form-control" id="expenseName" name="expenseName" placeholder="Enter name">
+						</div>
+						<div class="form-group">
+							<label for="expensePrice">Price</label>
+							<input type="textbox" class="form-control" id="expensePrice" name="expensePrice" placeholder="Enter price">
+						</div>
+						<button type="submit" class="btn btn-primary">Submit</button>
+					</form> 
             </div>
         </div>
     </div>
@@ -30,11 +38,13 @@
 <script src="/js/d3pie.min.js"></script>
 <script>
 var expenses = <?php echo $this->expenses; ?>; 
+console.log(expenses);
+var currentMonth = expenses[0].date.split(" ");
 
 var pie = new d3pie("pieChart", {
 	"header": {
 		"title": {
-			"text": expenses[0].date,
+			"text": currentMonth[0],
 			"fontSize": 34,
 			"font": "courier"
 		},

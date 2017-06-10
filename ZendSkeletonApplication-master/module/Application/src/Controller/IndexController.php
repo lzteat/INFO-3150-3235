@@ -58,6 +58,14 @@ class IndexController extends AbstractActionController
             $data[] = $expenseModel->getArray();
         }
 
+        $request = $this->getRequest();
+        if($request->isPost()){
+            $expenseName = $request->getPost('expenseName');
+            $expensePrice = $request->getPost('expensePrice');
+
+            $this->queryProcessor->addExpense($expenseName, $expensePrice);
+        }
+
         $doto = ['expenses' => json_encode($data)];
 
         return new ViewModel($doto);

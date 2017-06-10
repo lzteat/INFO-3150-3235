@@ -3,6 +3,7 @@
 namespace Application\Database;
 
 use Zend\Db\Sql\Sql;
+use Zend\Db\Sql\Insert;
 use Zend\Db\Adapter\Adapter;
 
 class QueryProcessor
@@ -30,10 +31,12 @@ class QueryProcessor
         ]);
 
         $this->sql = new Sql($this->adapter);
+        $this->insert = new Insert($this->adapter);
     }
 
     /**
-    * Testing if SQL works
+    * Method for getting the expenses of June
+    * TODO: take a parameter to get the expenses of one month
     */
     public function getOneMonthExpenses()
     {
@@ -42,9 +45,40 @@ class QueryProcessor
             ->from('expense')
             ->where('eDate >= "2017-06-01"')
             ->where('eDate <= "2017-07-01"')
+            ->where('cID = 1')
         ;
 
         $query = $this->sql->buildSqlString($select);
+
+        return $this->adapter->query($query)->execute();
+    }
+
+    /**
+    * TODO: get all expenses of a given ID
+    */
+    public function getAllExpenses()
+    {
+        //stub
+    }
+
+    /**
+    * Method for addiing an expense
+    * @param $price the price of the expense to be inserted
+    * @param $name the name of the expense to be inserted
+    */
+    public function addExpense($name, $price)
+    {
+        $insert = $this->insert
+            ->into('expense')
+            ->values(array(
+                'cID' => '1',
+                'eName' => $name,
+                'ePrice' => $price,
+                'eDate' => 'curdate()'
+            ))
+        ;
+
+        $query = $this->sql->buildSqlString($insert);
 
         return $this->adapter->query($query)->execute();
     }
