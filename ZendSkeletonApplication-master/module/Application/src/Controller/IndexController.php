@@ -8,6 +8,8 @@
 namespace Application\Controller;
 
 use Application\Database\QueryProcessor;
+use Application\Model\Customer;
+use Application\Model\Expense;
 
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
@@ -22,7 +24,8 @@ class IndexController extends AbstractActionController
     */
     public function __construct()
     {
-        $this->queryProcessor = new QueryProcessor('4669a2', 'admintpc', '3lmerfudd');
+        // creates a connection to the db
+        $this->queryProcessor = new QueryProcessor('info3150', 'admintpc', '3lmerfudd');
     }
 
     /*
@@ -38,6 +41,25 @@ class IndexController extends AbstractActionController
     */
     public function expenseAction()
     {
-        return new ViewModel();
+        $data = [];
+
+        $expenses = $this->queryProcessor->getOneMonthExpenses();
+        foreach($expenses as $expense)
+        {
+            $expenseModel = new Expense();
+            $expenseModel
+                ->setCId($expense['cID'])
+                ->setEId($expense['eID'])
+                ->setName($expense['eName'])
+                ->setPrice($expense['ePrice'])
+                ->setDate($expense['eDate'])
+            ;
+
+            $data[] = $expenseModel->getArray();
+        }
+
+        $doto = ['expenses' => json_encode($data)];
+
+        return new ViewModel($doto);
     }
 }

@@ -16,7 +16,8 @@
             </div>
             <div class="panel-body">
                 <p>
-                    This page can handle creation, and viewing of expenses    
+                    This page can handle creation, and viewing of expenses 
+					<?php echo $this->expenses; ?>   
                 </p>
             </div>
         </div>
@@ -28,10 +29,12 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/d3/4.7.2/d3.min.js"></script>
 <script src="/js/d3pie.min.js"></script>
 <script>
+var expenses = <?php echo $this->expenses; ?>; 
+
 var pie = new d3pie("pieChart", {
 	"header": {
 		"title": {
-			"text": "January",
+			"text": expenses[0].date,
 			"fontSize": 34,
 			"font": "courier"
 		},
@@ -47,65 +50,13 @@ var pie = new d3pie("pieChart", {
 		"sortOrder": "label-desc",
 		"content": [
 			{
-				"label": "Spiders",
-				"value": 2,
+				"label": expenses[0].name,
+				"value": parseInt(expenses[0].price),
 			},
 			{
-				"label": "Mother-in-laws",
-				"value": 10,
+				"label": expenses[1].name,
+				"value": parseInt(expenses[1].price),
 			},
-			{
-				"label": "Sharks",
-				"value": 8,
-			},
-			{
-				"label": "Alien invasion",
-				"value": 8,
-			},
-			{
-				"label": "Learning Objective-C",
-				"value": 5,
-			},
-			{
-				"label": "Public speaking",
-				"value": 3,
-			},
-			{
-				"label": "Donald Trump",
-				"value": 4,
-			},
-			{
-				"label": "The Zombie Apocalypse",
-				"value": 4,
-			},
-			{
-				"label": "The City of Winnipeg *",
-				"value": 3,
-			},
-			{
-				"label": "IE 6",
-				"value": 2,
-			},
-			{
-				"label": "Planes with/out snakes",
-				"value": 5,
-			},
-			{
-				"label": "Off-by-one errors",
-				"value": 3,
-			},
-			{
-				"label": "Chickadees",
-				"value": 4,
-			},
-			{
-				"label": "Owning a cat",
-				"value": 1,
-			},
-			{
-				"label": "Canada",
-				"value": 4,
-			}
 		]
 	},
 	"labels": {

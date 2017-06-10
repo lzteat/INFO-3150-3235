@@ -35,12 +35,13 @@ class QueryProcessor
     /**
     * Testing if SQL works
     */
-    public function testQuery()
+    public function getOneMonthExpenses()
     {
         $select = $this->sql
             ->select()
-            ->columns()
-            ->from()
+            ->from('expense')
+            ->where('eDate >= "2017-06-01"')
+            ->where('eDate <= "2017-07-01"')
         ;
 
         $query = $this->sql->buildSqlString($select);
