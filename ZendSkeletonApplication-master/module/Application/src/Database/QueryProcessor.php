@@ -62,19 +62,21 @@ class QueryProcessor
     }
 
     /**
-    * Method for addiing an expense
+    * Method for adding an expense
     * @param $price the price of the expense to be inserted
     * @param $name the name of the expense to be inserted
+    * @param $date the date of the expense to be inserted
     */
-    public function addExpense($name, $price)
+    public function addExpense($name, $price, $date)
     {
+        
         $insert = $this->insert
             ->into('expense')
             ->values(array(
                 'cID' => '1',
                 'eName' => $name,
                 'ePrice' => $price,
-                'eDate' => 'curdate()'
+                'eDate' => $date
             ))
         ;
 

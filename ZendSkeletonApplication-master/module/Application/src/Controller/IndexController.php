@@ -15,6 +15,10 @@ use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 use Zend\View\Model\JsonModel;
 
+use Zend\Validator\Digits;
+use Zend\Validator\Date;
+use Zend\I18n\Validator\Alpha;
+
 class IndexController extends AbstractActionController
 {
     // This is bad practice for now until I read up on factory design patterns
@@ -41,6 +45,10 @@ class IndexController extends AbstractActionController
     */
     public function expenseAction()
     {
+        $digitsValidator = new Digits();
+		$alphaValidator = new Alpha();
+        $dateValidator = new Date();
+
         $data = [];
 
         $expenses = $this->queryProcessor->getOneMonthExpenses();
@@ -59,11 +67,19 @@ class IndexController extends AbstractActionController
         }
 
         $request = $this->getRequest();
-        if($request->isPost()){
+        //if a post was made start processing it to create a new expense
+        if($request->isPost())
+        {
             $expenseName = $request->getPost('expenseName');
             $expensePrice = $request->getPost('expensePrice');
+            $expenseDate = $request->getPost('expenseDate');
 
-            $this->queryProcessor->addExpense($expenseName, $expensePrice);
+            if($alphaValidator->isValid($expenseName) && 
+                $digitsValidator->isValid($expensePrice) && 
+                $dateValidator->isValid($expenseDate))
+            {
+                $this->queryProcessor->addExpense($expenseName, $expensePrice, $expenseDate);
+            }
         }
 
         $doto = ['expenses' => json_encode($data)];
