@@ -41,6 +41,14 @@ class IndexController extends AbstractActionController
     }
 
     /*
+    * For routes on /create
+    */
+    public function createAction()
+    {
+        return new ViewModel();
+    }
+
+    /*
     * For routes on /expense
     */
     public function expenseAction()

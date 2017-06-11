@@ -9,7 +9,6 @@ namespace Application;
 
 use Zend\Router\Http\Literal;
 use Zend\Router\Http\Segment;
-use Zend\Session;
 use Zend\ServiceManager\Factory\InvokableFactory;
 
 return [
@@ -42,6 +41,16 @@ return [
                     'defaults' => [
                         'controller' => Controller\IndexController::class,
                         'action'     => 'expense',
+                    ],
+                ],
+            ],
+            'create' => [
+                'type' => Literal::class,
+                'options' => [
+                    'route'    => '/create',
+                    'defaults' => [
+                        'controller' => Controller\IndexController::class,
+                        'action'     => 'create',
                     ],
                 ],
             ],

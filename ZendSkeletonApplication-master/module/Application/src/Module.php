@@ -7,9 +7,6 @@
 
 namespace Application;
 
-use Zend\Mvc\MvcEvent;
-use Zend\Session\SessionManager;
-
 class Module
 {
     const VERSION = '3.0.3-dev';
